@@ -2,14 +2,15 @@ from tokenize import String
 from typing import Optional, List
 from fastapi import APIRouter, HTTPException, Security, Depends, status
 from sqlalchemy.orm import Session
-from employeeTracker.entities.schemas.employee import (
+from entities.schemas.employee import (
     Employee,
     ShowEmployee,
     UpdateEmployee
 )
-from employeeTracker.routers.errors.generate_http_response_openapi import generate_response_for_openapi
-from employeeTracker.config.database import get_db
-from employeeTracker.repositories import employee_repo
+
+from routers.errors.generate_http_response_openapi import generate_response_for_openapi
+from config.database import get_db
+from repositories import employee_repo
 
 router = APIRouter(responses=generate_response_for_openapi("Employee"))
 

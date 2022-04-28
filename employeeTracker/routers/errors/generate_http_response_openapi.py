@@ -1,4 +1,4 @@
-from employeeTracker.routers.errors.http_error import HTTPErrorModel
+from routers.errors.http_error import HTTPErrorModel
 import string
 
 def generate_response_for_openapi(resource_name: str):

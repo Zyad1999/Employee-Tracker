@@ -1,10 +1,10 @@
 import email
 from unicodedata import name
 from sqlalchemy.orm import Session
-from ..entities.models.employee import Employee as employee_model
-from ..entities.schemas.employee import Employee,ShowEmployee
+from entities.models.employee import Employee as employee_model
+from entities.schemas.employee import Employee,ShowEmployee
 from fastapi import HTTPException, status
-from ..config.hashing import get_password_hash
+from config.hashing import get_password_hash
 
 async def create(newemployee: Employee, db: Session):
     new_employee = employee_model(name=newemployee.name,

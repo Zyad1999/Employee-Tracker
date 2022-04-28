@@ -4,14 +4,16 @@ from fastapi import status
 from fastapi.routing import APIRouter
 from pydantic import BaseModel, Field
 
-from employeeTracker.config.environment import PROJECT_NAME, API_PREFIX
+from config.environment import PROJECT_NAME, API_PREFIX
 
-from employeeTracker.routers.employee import router as employeeRouter
-
+from routers.employee import router as employeeRouter
+from routers.project import router as projectRouter
+from routers.department import router as departmentRouter
 router = APIRouter()
 
 router.include_router(employeeRouter, prefix="/employee")
-
+router.include_router(projectRouter,prefix="/project")
+router.include_router(departmentRouter,prefix="/department")
 class StatusEnum(str, Enum):
     OK = "OK"
     FAILURE = "FAILURE"

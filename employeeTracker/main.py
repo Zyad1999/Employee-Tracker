@@ -2,15 +2,16 @@ from fastapi import FastAPI
 from fastapi.exceptions import RequestValidationError
 from starlette.exceptions import HTTPException
 from starlette.middleware.cors import CORSMiddleware
-from employeeTracker.config.database import engine
-from employeeTracker.entities.models import employee
+from config.database import engine
+from entities.models import employee
+from entities.models import project, department
 
-
-from employeeTracker.routers.root import router
+from routers.root import router
 
 employee.Base.metadata.create_all(engine)
-
-from employeeTracker.config.environment import (
+project.Base.metadata.create_all(engine)
+department.Base.metadata.create_all(engine)
+from config.environment import (
     ALLOWED_HOSTS,
     API_PREFIX,
     DEBUG,

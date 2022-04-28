@@ -1,14 +1,14 @@
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
-from employeeTracker.config.environment import DATABASE_URL
+from config.environment import DATABASE_URL
 
 SQLALCHEMY_DATABASE_URL = DATABASE_URL
 
 engine = create_engine(
-    SQLALCHEMY_DATABASE_URL, connect_args={}, future=True
+    DATABASE_URL, connect_args={}
 )
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine, future=True)
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 Base = declarative_base()
 
