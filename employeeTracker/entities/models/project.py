@@ -7,5 +7,7 @@ class project(Base):
 
     id =  Column(Integer ,primary_key=True, index=True)
     location = Column(String)
-    name = Column(String)
+    description = Column(String)
+    name =  Column(String)
     budget = Column(FLOAT)
+

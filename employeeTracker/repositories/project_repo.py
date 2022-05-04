@@ -4,10 +4,10 @@ from entities.schemas.project import project,showProject
 from fastapi import HTTPException, status
 
 async def createProject(newemproject: project, db: Session):
-    new_project = project_model(id=newemproject.id,
-                                    budget=newemproject.budget,
+    new_project = project_model(    budget=newemproject.budget,
                                     name=newemproject.name,
-                                    location=newemproject.location
+                                    location=newemproject.location ,
+                                    description= newemproject.description
                                 )
     db.add(new_project)
     db.commit()

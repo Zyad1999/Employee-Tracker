@@ -4,8 +4,7 @@ from entities.schemas.department import department,showDepartment
 from fastapi import HTTPException, status
 
 async def createDepartment(newdepartment: department, db: Session):
-    new_department = department_model(id=newdepartment.id,
-                                    number_employee=newdepartment.number_employee,
+    new_department = department_model(number_employee=newdepartment.number_employee,
                                     name=newdepartment.name,
                                     location=newdepartment.location
                                 )

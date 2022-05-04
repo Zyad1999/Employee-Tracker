@@ -2,7 +2,6 @@ from pydantic import BaseModel
 from typing import  Optional
 
 class department(BaseModel):
-    id: int
     location : str
     name : str
     number_employee : int
