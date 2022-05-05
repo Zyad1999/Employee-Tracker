@@ -4,13 +4,14 @@ from starlette.exceptions import HTTPException
 from starlette.middleware.cors import CORSMiddleware
 from config.database import engine
 from entities.models import employee
-from entities.models import project, department
+from entities.models import project, department ,dependent
 
 from routers.root import router
 
 employee.Base.metadata.create_all(engine)
 project.Base.metadata.create_all(engine)
 department.Base.metadata.create_all(engine)
+dependent.Base.metadata.create_all(engine)
 from config.environment import (
     ALLOWED_HOSTS,
     API_PREFIX,

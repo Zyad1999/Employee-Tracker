@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from entities.models.project import project as project_model
+from entities.models.project import Project as project_model
 from entities.schemas.project import project,showProject
 from fastapi import HTTPException, status
 

@@ -7,7 +7,9 @@ from fastapi import HTTPException, status
 from config.hashing import get_password_hash
 
 async def create(newemployee: Employee, db: Session):
-    new_employee = employee_model(name=newemployee.name,
+    new_employee = employee_model(  fname=newemployee.fname,
+                                    lname=newemployee.lname,
+                                    mname=newemployee.mname,
                                     email=newemployee.email,
                                     phone=newemployee.phone,
                                     address=newemployee.address,
@@ -15,6 +17,7 @@ async def create(newemployee: Employee, db: Session):
                                     status=newemployee.status,
                                     birthDate=newemployee.birthDate,
                                     gender=newemployee.gender,
+                                    degree =  newemployee.degree,
                                     password=get_password_hash(newemployee.password)
                                 )
     db.add(new_employee)

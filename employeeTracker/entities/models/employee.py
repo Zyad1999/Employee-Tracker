@@ -8,7 +8,9 @@ Base  = declarative_base()
 class Employee(Base):
     __tablename__ = 'Employee'
     ssn  = Column(Integer, primary_key=True, index=True)
-    name = Column(String)
+    fname = Column(String)
+    lname = Column(String)
+    mname =  Column(String)
     email = Column(String)
     phone = Column(String)
     address = Column(String)
@@ -17,3 +19,5 @@ class Employee(Base):
     birthDate = Column(Date)
     gender = Column(String)
     password = Column(String)
+    degree =  Column(String)
+    #dependent = relationship("Dependent", back_populates="employee")

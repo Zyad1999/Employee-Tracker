@@ -3,7 +3,10 @@ from pydantic import BaseModel,EmailStr
 from datetime import date
 
 class Employee(BaseModel):
-    name:str
+    fname:str
+    mname: str
+    lname: str
+    degree :str
     email:EmailStr
     phone:str
     address:str
@@ -14,7 +17,10 @@ class Employee(BaseModel):
     password:str
 
 class ShowEmployee(BaseModel):
-    name:str
+    fname:str
+    mname: str
+    lname: str
+    degree:str
     email:EmailStr
     phone:str
     address:str
@@ -27,8 +33,11 @@ class ShowEmployee(BaseModel):
         orm_mode = True
 
 class UpdateEmployee(BaseModel):
-    name:Optional[str]
+    fname:Optional[str]
+    lname: Optional[str]
+    mname: Optional[str]
     email:Optional[EmailStr]
+    degree:Optional[str]
     phone:Optional[str]
     address:Optional[str]
     salary: Optional[int]

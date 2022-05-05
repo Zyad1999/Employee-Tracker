@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from entities.models.department import department as department_model
+from entities.models.department import Department as department_model
 from entities.schemas.department import department,showDepartment
 from fastapi import HTTPException, status
 

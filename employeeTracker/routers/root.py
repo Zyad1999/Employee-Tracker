@@ -9,11 +9,14 @@ from config.environment import PROJECT_NAME, API_PREFIX
 from routers.employee import router as employeeRouter
 from routers.project import router as projectRouter
 from routers.department import router as departmentRouter
+from routers.dependent import router as dependentRouter
+
 router = APIRouter()
 
 router.include_router(employeeRouter, prefix="/employee")
 router.include_router(projectRouter,prefix="/project")
 router.include_router(departmentRouter,prefix="/department")
+router.include_router(dependentRouter,prefix="/dependent")
 class StatusEnum(str, Enum):
     OK = "OK"
     FAILURE = "FAILURE"
