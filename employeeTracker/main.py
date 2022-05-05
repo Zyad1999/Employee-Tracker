@@ -8,9 +8,9 @@ from entities.models import project, department ,dependent
 
 from routers.root import router
 
+department.Base.metadata.create_all(engine)
 employee.Base.metadata.create_all(engine)
 project.Base.metadata.create_all(engine)
-department.Base.metadata.create_all(engine)
 dependent.Base.metadata.create_all(engine)
 from config.environment import (
     ALLOWED_HOSTS,
