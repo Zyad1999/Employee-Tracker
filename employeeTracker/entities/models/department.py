@@ -1,6 +1,6 @@
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, Integer, String, ForeignKey , FLOAT
-Base = declarative_base()
+from config.database import Base
 from sqlalchemy.orm import relationship
 class Department(Base):
 
@@ -12,4 +12,3 @@ class Department(Base):
     number_employee = Column(Integer)
 
     employees = relationship("Employee", back_populates="department")
-    #p_control =  relationship(Project.__tablename__,back_populates = "d_control")

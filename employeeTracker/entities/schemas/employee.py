@@ -1,6 +1,8 @@
 from typing import List, Optional
 from pydantic import BaseModel,EmailStr
 from datetime import date
+from ..schemas.department import showDepartment
+from ..schemas.project import showProject
 
 class Employee(BaseModel):
     fname:str
@@ -15,8 +17,9 @@ class Employee(BaseModel):
     birthDate: date
     gender: str
     password:str
+    department_id:int
 
-class ShowEmployee(BaseModel):
+class ShowEmployeeBase(BaseModel):
     fname:str
     mname: str
     lname: str
@@ -29,9 +32,12 @@ class ShowEmployee(BaseModel):
     birthDate: date
     gender: str
     ssn: str
+class ShowEmployee(ShowEmployeeBase):
+    department:Optional[showDepartment]
+    projects:Optional[List[showProject]]
     class Config():
         orm_mode = True
-
+    
 class UpdateEmployee(BaseModel):
     fname:Optional[str]
     lname: Optional[str]
@@ -45,3 +51,9 @@ class UpdateEmployee(BaseModel):
     birthDate: Optional[date]
     gender: Optional[str]
     password:Optional[str]
+    department_id:Optional[int]
+
+class AssignEmployee(BaseModel):
+    project_id:int
+    employee_id:int
+    hours:int

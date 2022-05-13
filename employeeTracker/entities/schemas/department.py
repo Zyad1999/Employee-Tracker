@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from typing import  Optional
+from typing import  List, Optional
 
 class department(BaseModel):
     location : str
@@ -13,7 +13,6 @@ class showDepartment(BaseModel):
     number_employee: int
     class Config():
         orm_mode = True
-
 class updateDepartment(BaseModel):
     location: Optional[str]
     name: Optional[str]

@@ -4,10 +4,10 @@ from entities.schemas.dependent import dependent,showDependent
 from fastapi import HTTPException, status
 
 async def createDependent(new_dependent: dependent, db: Session):
-    new_dependent= dependent_model( id =  new_dependent.id,
-                                    gender=new_dependent.gender,
+    new_dependent= dependent_model(gender=new_dependent.gender,
                                     name=new_dependent.name,
-                                    relationship=new_dependent.relationship
+                                    relation=new_dependent.relation,
+                                    employee_ssn=new_dependent.employee_ssn
                                 )
     db.add(new_dependent)
     db.commit()

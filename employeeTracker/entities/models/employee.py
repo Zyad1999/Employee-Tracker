@@ -3,8 +3,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 from .department import Department
-
-Base  = declarative_base()
+from config.database import Base
 
 class Employee(Base):
     __tablename__ = 'Employee'
@@ -21,8 +20,7 @@ class Employee(Base):
     gender = Column(String)
     password = Column(String)
     degree =  Column(String)
-    projects = relationship("Project",secondary='Works')
+    projects = relationship("Project",secondary='Works',cascade="all, delete",passive_deletes=True)
     department_id = Column(Integer, ForeignKey(Department.id))
     department = relationship(Department, back_populates="employees")
-
-    #dependent = relationship("Dependent", back_populates="employee")
+    dependents = relationship("Dependent", back_populates="employee",cascade="all, delete",passive_deletes=True)

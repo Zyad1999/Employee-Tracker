@@ -5,7 +5,8 @@ from sqlalchemy.orm import Session
 from entities.schemas.employee import (
     Employee,
     ShowEmployee,
-    UpdateEmployee
+    UpdateEmployee,
+    AssignEmployee
 )
 
 from routers.errors.generate_http_response_openapi import generate_response_for_openapi
@@ -60,3 +61,12 @@ async def delete_one(ssn:int, db: Session = Depends(get_db)):
 )
 async def update_one(ssn:int, employee: UpdateEmployee, db: Session = Depends(get_db)):
     return await employee_repo.update_an_employee(ssn,employee.dict(), db)
+
+@router.post('/assign',
+    response_model=ShowEmployee,
+    status_code=status.HTTP_200_OK,
+    summary="Assign employee to a project",
+    tags=["Employee"]
+)
+async def assign_one(assign: AssignEmployee, db: Session = Depends(get_db)):
+    return await employee_repo.assign_an_employee(assign, db)
