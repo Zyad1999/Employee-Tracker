@@ -18,6 +18,7 @@ class Employee(BaseModel):
     gender: str
     password:str
     department_id:int
+    manage_department_id:int
 
 class ShowEmployeeBase(BaseModel):
     fname:str
@@ -32,6 +33,7 @@ class ShowEmployeeBase(BaseModel):
     birthDate: date
     gender: str
     ssn: str
+
     class Config():
         orm_mode = True
 
@@ -55,6 +57,7 @@ class UpdateEmployee(BaseModel):
     gender: Optional[str]
     password:Optional[str]
     department_id:Optional[int]
+    manage_department_id:Optional[int]
 
 class AssignEmployee(BaseModel):
     project_id:int
