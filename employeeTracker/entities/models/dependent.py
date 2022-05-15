@@ -9,9 +9,8 @@ class Dependent(Base):
 
     __tablename__ = 'Dependent'
 
-    id = Column(Integer, primary_key=True,index = True)
     name = Column(String)
     gender = Column(String)
     relation = Column(String)
-    employee_ssn = Column(Integer, ForeignKey(Employee.ssn, ondelete="CASCADE"))
+    employee_ssn = Column(Integer, ForeignKey(Employee.ssn, ondelete="CASCADE"),primary_key=True )
     employee = relationship(Employee, back_populates="dependents")

@@ -4,14 +4,14 @@ from sqlalchemy.orm import sessionmaker
 from config.environment import DATABASE_URL
 from sqlalchemy import MetaData
 
-SQLALCHEMY_DATABASE_URL = 'postgresql+psycopg2://postgres:admin@localhost/employeetracker'
+SQLALCHEMY_DATABASE_URL = 'postgresql+psycopg2://postgres:admin@localhost/tracker'
 
 engine = create_engine(
     SQLALCHEMY_DATABASE_URL, connect_args={}
 )
-#meta = MetaData(engine)
-#meta.reflect()
-#meta.drop_all()
+meta = MetaData(engine)
+meta.reflect()
+meta.drop_all()
     
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 

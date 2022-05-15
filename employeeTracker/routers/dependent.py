@@ -35,23 +35,23 @@ async def create(dependent: dependent, db: Session = Depends(get_db)):
     return await dependent_repo.createDependent(dependent, db)
 
 @router.get(
-    "/{id}",
+    "/{employee_ssn}",
     response_model=showDependent,
     status_code=status.HTTP_200_OK,
     summary="Get a Dependent",
     tags=["Dependent"]
 )
-async def get_one(id:int, db: Session = Depends(get_db)):
-    return await dependent_repo.getDependent(id,db)
+async def get_one(employee_ssn:int, db: Session = Depends(get_db)):
+    return await dependent_repo.getDependent(employee_ssn,db)
 
 @router.delete(
-    "/{id}",
+    "/{employee_ssn}",
     status_code=status.HTTP_200_OK,
     summary="Delete a Dependent",
     tags=["Dependent"]
 )
-async def delete_one(id:int, db: Session = Depends(get_db)):
-    return await dependent_repo.deleteDependent(id,db)
+async def delete_one(employee_ssn:int, db: Session = Depends(get_db)):
+    return await dependent_repo.deleteDependent(employee_ssn,db)
 
 @router.put('/{id}',
     response_model=showDependent,
@@ -59,5 +59,5 @@ async def delete_one(id:int, db: Session = Depends(get_db)):
     summary="Update Dependent",
     tags=["Dependent"]
 )
-async def update_one(id:int, dependent: updateDependent, db: Session = Depends(get_db)):
-    return await dependent_repo.updateDependent(id,dependent.dict(), db)
+async def update_one(employee_ssn:int, dependent: updateDependent, db: Session = Depends(get_db)):
+    return await dependent_repo.updateDependent(employee_ssn,dependent.dict(), db)

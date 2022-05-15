@@ -2,7 +2,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, Integer, String, ForeignKey , FLOAT,Date
 from sqlalchemy.orm import relationship
 from .employee import Employee
-#from .department import Department
+from .department import Department
 from config.database import Base
 class Project(Base):
 
@@ -13,7 +13,9 @@ class Project(Base):
     description = Column(String)
     name =  Column(String)
     budget = Column(FLOAT)
-    employees = relationship('Employee', secondary = 'Works')
+    employees = relationship('Employee', secondary = 'Works', overlaps="projects")
+    d_control = relationship('Department', back_populates='p_control')
+    department_id = Column(Integer, ForeignKey(Department.id))
 
 class Works(Base):
     __tablename__ = 'Works'

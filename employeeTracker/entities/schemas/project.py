@@ -6,6 +6,7 @@ class project(BaseModel):
     name : str
     budget : float
     description:str
+    department_id:int
 
 class showProject(BaseModel):
     id: int
@@ -13,6 +14,8 @@ class showProject(BaseModel):
     name: str
     budget: float
     description: str
+    department_id:int
+
     class Config():
         orm_mode = True
 
@@ -21,3 +24,4 @@ class updateProject(BaseModel):
     name: Optional[str]
     budget: Optional[float]
     description:Optional[str]
+    department_id:Optional[int]

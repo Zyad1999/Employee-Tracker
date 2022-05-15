@@ -12,3 +12,5 @@ class Department(Base):
     number_employee = Column(Integer)
 
     employees = relationship("Employee", back_populates="department")
+    p_control =  relationship('Project',back_populates = 'd_control')
+

@@ -32,6 +32,9 @@ class ShowEmployeeBase(BaseModel):
     birthDate: date
     gender: str
     ssn: str
+    class Config():
+        orm_mode = True
+
 class ShowEmployee(ShowEmployeeBase):
     department:Optional[showDepartment]
     projects:Optional[List[showProject]]

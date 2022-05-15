@@ -7,8 +7,9 @@ async def createProject(newemproject: project, db: Session):
     new_project = project_model(    budget=newemproject.budget,
                                     name=newemproject.name,
                                     location=newemproject.location ,
-                                    description= newemproject.description
-                                )
+                                    description= newemproject.description,
+                                    department_id=newemproject.department_id
+                                    )
     db.add(new_project)
     db.commit()
     db.refresh(new_project)
