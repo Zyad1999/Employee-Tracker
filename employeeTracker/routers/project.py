@@ -10,7 +10,7 @@ from entities.schemas.project import (
 
 from routers.errors.generate_http_response_openapi import generate_response_for_openapi
 from config.database import get_db
-from repositories import project_repo
+from repositories import project_repo,services
 
 router = APIRouter(responses=generate_response_for_openapi("Project"))
 
@@ -21,7 +21,7 @@ router = APIRouter(responses=generate_response_for_openapi("Project"))
     summary="Get all Projects",
     tags=["Projects"]
 )
-async def get(db: Session = Depends(get_db)):
+async def get(db: Session = Depends(get_db),current_user: int = Depends(services.get_current_user)):
     return await project_repo.getAllProject(db)
 
 @router.post('/',
@@ -31,7 +31,7 @@ async def get(db: Session = Depends(get_db)):
     tags=["Projects"]
 )
 
-async def create(project: project, db: Session = Depends(get_db)):
+async def create(project: project, db: Session = Depends(get_db),current_user: int = Depends(services.get_current_user)):
     return await project_repo.createProject(project, db)
 
 @router.get(
@@ -41,7 +41,7 @@ async def create(project: project, db: Session = Depends(get_db)):
     summary="Get a Project",
     tags=["Projects"]
 )
-async def get_one(id:int, db: Session = Depends(get_db)):
+async def get_one(id:int, db: Session = Depends(get_db),current_user: int = Depends(services.get_current_user)):
     return await project_repo.getProject(id,db)
 
 @router.delete(
@@ -50,7 +50,7 @@ async def get_one(id:int, db: Session = Depends(get_db)):
     summary="Delete a Project",
     tags=["Projects"]
 )
-async def delete_one(id:int, db: Session = Depends(get_db)):
+async def delete_one(id:int, db: Session = Depends(get_db),current_user: int = Depends(services.get_current_user)):
     return await project_repo.deleteProject(id,db)
 
 @router.put('/{id}',
@@ -59,5 +59,5 @@ async def delete_one(id:int, db: Session = Depends(get_db)):
     summary="Update Project",
     tags=["Projects"]
 )
-async def update_one(id:int, project: updateProject, db: Session = Depends(get_db)):
+async def update_one(id:int, project: updateProject, db: Session = Depends(get_db),current_user: int = Depends(services.get_current_user)):
     return await project_repo.updateProject(id,project.dict(), db)

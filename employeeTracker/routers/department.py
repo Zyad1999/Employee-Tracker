@@ -10,7 +10,7 @@ from entities.schemas.department import (
 
 from routers.errors.generate_http_response_openapi import generate_response_for_openapi
 from config.database import get_db
-from repositories import department_repo
+from repositories import department_repo,services
 
 router = APIRouter(responses=generate_response_for_openapi("Department"))
 
@@ -21,7 +21,7 @@ router = APIRouter(responses=generate_response_for_openapi("Department"))
     summary="Get all Departments",
     tags=["Departments"]
 )
-async def get(db: Session = Depends(get_db)):
+async def get(db: Session = Depends(get_db),current_user: int = Depends(services.get_current_user)):
     return await department_repo.getAllDepartment(db)
 
 @router.post('/',
@@ -31,7 +31,7 @@ async def get(db: Session = Depends(get_db)):
     tags=["Departments"]
 )
 
-async def create(department: department, db: Session = Depends(get_db)):
+async def create(department: department, db: Session = Depends(get_db),current_user: int = Depends(services.get_current_user)):
     return await department_repo.createDepartment(department, db)
 
 @router.get(
@@ -41,7 +41,7 @@ async def create(department: department, db: Session = Depends(get_db)):
     summary="Get a Department",
     tags=["Departments"]
 )
-async def get_one(id:int, db: Session = Depends(get_db)):
+async def get_one(id:int, db: Session = Depends(get_db),current_user: int = Depends(services.get_current_user)):
     return await department_repo.getDepartment(id,db)
 
 @router.delete(
@@ -50,7 +50,7 @@ async def get_one(id:int, db: Session = Depends(get_db)):
     summary="Delete a Department",
     tags=["Departments"]
 )
-async def delete_one(id:int, db: Session = Depends(get_db)):
+async def delete_one(id:int, db: Session = Depends(get_db),current_user: int = Depends(services.get_current_user)):
     return await department_repo.deleteDepartment(id,db)
 
 @router.put('/{id}',
@@ -59,5 +59,5 @@ async def delete_one(id:int, db: Session = Depends(get_db)):
     summary="Update Department",
     tags=["Departments"]
 )
-async def update_one(id:int, department: updateDepartment, db: Session = Depends(get_db)):
+async def update_one(id:int, department: updateDepartment, db: Session = Depends(get_db),current_user: int = Depends(services.get_current_user)):
     return await department_repo.updateDepartment(id,department.dict(), db)

@@ -9,9 +9,9 @@ SQLALCHEMY_DATABASE_URL = 'postgresql+psycopg2://postgres:admin@localhost/tracke
 engine = create_engine(
     SQLALCHEMY_DATABASE_URL, connect_args={}
 )
-meta = MetaData(engine)
-meta.reflect()
-meta.drop_all()
+# meta = MetaData(engine)
+# meta.reflect()
+# meta.drop_all()
     
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 

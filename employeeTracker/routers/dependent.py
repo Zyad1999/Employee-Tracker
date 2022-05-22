@@ -10,7 +10,7 @@ from entities.schemas.dependent import (
 
 from routers.errors.generate_http_response_openapi import generate_response_for_openapi
 from config.database import get_db
-from repositories import dependent_repo
+from repositories import dependent_repo,services
 
 router = APIRouter(responses=generate_response_for_openapi("Dependent"))
 
@@ -21,7 +21,7 @@ router = APIRouter(responses=generate_response_for_openapi("Dependent"))
     summary="Get all Dependent",
     tags=["Dependent"]
 )
-async def get(db: Session = Depends(get_db)):
+async def get(db: Session = Depends(get_db),current_user: int = Depends(services.get_current_user)):
     return await dependent_repo.getAllDependent(db)
 
 @router.post('/',
@@ -31,7 +31,7 @@ async def get(db: Session = Depends(get_db)):
     tags=["Dependent"]
 )
 
-async def create(dependent: dependent, db: Session = Depends(get_db)):
+async def create(dependent: dependent, db: Session = Depends(get_db),current_user: int = Depends(services.get_current_user)):
     return await dependent_repo.createDependent(dependent, db)
 
 @router.get(
@@ -41,7 +41,7 @@ async def create(dependent: dependent, db: Session = Depends(get_db)):
     summary="Get a Dependent",
     tags=["Dependent"]
 )
-async def get_one(employee_ssn:int, db: Session = Depends(get_db)):
+async def get_one(employee_ssn:int, db: Session = Depends(get_db),current_user: int = Depends(services.get_current_user)):
     return await dependent_repo.getDependent(employee_ssn,db)
 
 @router.delete(
@@ -50,7 +50,7 @@ async def get_one(employee_ssn:int, db: Session = Depends(get_db)):
     summary="Delete a Dependent",
     tags=["Dependent"]
 )
-async def delete_one(employee_ssn:int, db: Session = Depends(get_db)):
+async def delete_one(employee_ssn:int, db: Session = Depends(get_db),current_user: int = Depends(services.get_current_user)):
     return await dependent_repo.deleteDependent(employee_ssn,db)
 
 @router.put('/{id}',
@@ -59,5 +59,5 @@ async def delete_one(employee_ssn:int, db: Session = Depends(get_db)):
     summary="Update Dependent",
     tags=["Dependent"]
 )
-async def update_one(employee_ssn:int, dependent: updateDependent, db: Session = Depends(get_db)):
+async def update_one(employee_ssn:int, dependent: updateDependent, db: Session = Depends(get_db),current_user: int = Depends(services.get_current_user)):
     return await dependent_repo.updateDependent(employee_ssn,dependent.dict(), db)

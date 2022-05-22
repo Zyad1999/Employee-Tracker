@@ -41,6 +41,13 @@ async def get_an_employee(ssn:int, db: Session):
                             detail=f"Employee with the ssn {ssn} is not available")
     return employee
 
+async def get_an_employee_by_email(email:str, db: Session):
+    employee = db.query(employee_model).filter(employee_model.email == email).first()
+    if not employee:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
+                            detail=f"Employee with the email {email} is not available")
+    return employee
+
 async def delete_an_employee(ssn: int, db: Session):
     employee = db.query(employee_model).filter(employee_model.ssn == ssn)
 

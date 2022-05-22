@@ -61,3 +61,14 @@ class AssignEmployee(BaseModel):
     project_id:int
     employee_id:int
     hours:int
+
+class EmployeeAuthBody(BaseModel):
+    email: EmailStr
+    password: str
+
+class Token(BaseModel):
+    access_token: str
+    token_type: str
+
+class TokenPayload(BaseModel):
+    ssn: str
