@@ -54,7 +54,7 @@ async def get(request: OAuth2PasswordRequestForm = Depends(),db: Session = Depen
     summary="Add an employee",
     tags=["Employee"]
 )
-async def create(employee: Employee, db: Session = Depends(get_db),current_user: int = Depends(services.get_current_user)):
+async def create(employee: Employee, db: Session = Depends(get_db)):
     return await employee_repo.create(employee, db)
 
 @router.get(

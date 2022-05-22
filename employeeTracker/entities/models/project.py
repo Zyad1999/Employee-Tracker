@@ -13,8 +13,8 @@ class Project(Base):
     description = Column(String)
     name =  Column(String)
     budget = Column(FLOAT)
-    employees = relationship('Employee', secondary = 'Works', overlaps="projects")
     d_control = relationship('Department', back_populates='p_control')
+    employees = relationship('Employee',secondary = 'Works')
     department_id = Column(Integer, ForeignKey(Department.id))
 
 class Works(Base):
