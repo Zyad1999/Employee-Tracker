@@ -23,8 +23,7 @@ async def create(newemployee: Employee, db: Session):
                                     gender=newemployee.gender,
                                     degree =  newemployee.degree,
                                     password=get_password_hash(newemployee.password),
-                                    department_id=newemployee.department_id
-                                )
+                                    department_id=newemployee.department_id                                )
     db.add(new_employee)
     db.commit()
     await updateDepartment(newemployee.department_id,{"number_employee":db.query(employee_model).filter(employee_model.department_id == newemployee.department_id).count()},db)

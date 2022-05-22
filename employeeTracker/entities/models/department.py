@@ -13,4 +13,3 @@ class Department(Base):
 
     employees = relationship("Employee", back_populates="department")
     p_control =  relationship('Project',back_populates = 'd_control')
-    managed =  relationship("Employee", back_populates="manager")

@@ -22,7 +22,5 @@ class Employee(Base):
     degree =  Column(String)
     projects = relationship("Project",secondary='Works',cascade="all, delete",passive_deletes=True)
     department_id = Column(Integer, ForeignKey(Department.id))
-    manage_department_id  = Column(Integer, ForeignKey(Department.id))
-    manager =  relationship(Department, back_populates="managed")
     department = relationship(Department, back_populates="employees")
     dependents = relationship("Dependent", back_populates="employee",cascade="all, delete",passive_deletes=True)
