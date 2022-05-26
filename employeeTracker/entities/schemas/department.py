@@ -13,6 +13,7 @@ class showDepartment(BaseModel):
     number_employee: int
     class Config():
         orm_mode = True
+
 class updateDepartment(BaseModel):
     location: Optional[str]
     name: Optional[str]

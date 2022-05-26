@@ -31,7 +31,7 @@ async def get(db: Session = Depends(get_db),current_user: int = Depends(services
     tags=["Departments"]
 )
 
-async def create(department: department, db: Session = Depends(get_db),current_user: int = Depends(services.get_current_user)):
+async def create(department: department, db: Session = Depends(get_db)):
     return await department_repo.createDepartment(department, db)
 
 @router.get(
