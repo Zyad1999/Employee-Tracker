@@ -15,10 +15,11 @@ class Project(Base):
     budget = Column(FLOAT)
     employees = relationship('Employee', secondary = 'Workss')
     d_control = relationship('Department', back_populates='p_control')
+    employees = relationship('Employee',secondary = 'Workss')
     department_id = Column(Integer, ForeignKey(Department.id))
 
 class Works(Base):
-    __tablename__ = 'Works'
+    __tablename__ = 'Workss'
     project_id = Column(Integer, ForeignKey('Project.id'), primary_key = True)
     employee_id = Column(Integer, ForeignKey(Employee.ssn, ondelete="CASCADE"), primary_key = True)
     hours =  Column(Integer)

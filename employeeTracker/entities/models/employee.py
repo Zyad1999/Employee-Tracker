@@ -20,7 +20,7 @@ class Employee(Base):
     gender = Column(String)
     password = Column(String)
     degree =  Column(String)
-    projects = relationship("Project",secondary='Works',cascade="all, delete",passive_deletes=True)
+    projects = relationship("Project",secondary='Workss',cascade="all, delete",passive_deletes=True)
     department_id = Column(Integer, ForeignKey(Department.id))
     department = relationship(Department, back_populates="employees")
     dependents = relationship("Dependent", back_populates="employee",cascade="all, delete",passive_deletes=True)
